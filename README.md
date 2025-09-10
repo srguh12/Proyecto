@@ -15,3 +15,18 @@ Para iniciar el servidor backend:
    ```
 
 El servidor quedará disponible en [http://localhost:3001](http://localhost:3001).
+
+### Pruebas
+
+Para ejecutar las pruebas del backend:
+
+```bash
+cd backend
+npm test
+```
+
+Para ejecutar las pruebas de la aplicación Flask:
+
+```bash
+make test
+```
