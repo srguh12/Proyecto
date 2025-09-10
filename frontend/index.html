@@ -236,7 +236,13 @@
         }
 
         // Mensaje de bienvenida y ejemplos
-        window.onload = function() {
+        // Verifica si el usuario ha iniciado sesión
+        window.onload = async function() {
+            const res = await fetch('/user', {credentials: 'include'});
+            if (res.status === 401) {
+                window.location.href = 'login.html';
+                return;
+            }
             appendMessage('bot', '¡Hola! Soy tu asistente virtual. Ejemplos: "¿Cuál es el horario de atención?", "¿Dónde están ubicados?", "¿Qué métodos de pago aceptan?"');
         };
 
@@ -247,9 +253,10 @@
             appendMessage('user', text);
             userInput.value = '';
             typingIndicator.style.display = 'block';
-            fetch('http://localhost:5000/chat', {
+            fetch('/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
                 body: JSON.stringify({ message: text })
             })
             .then(response => response.json())
