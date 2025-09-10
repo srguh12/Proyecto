@@ -11,4 +11,8 @@ app.post('/api/chat', (req, res) => {
     res.json({ response });
 });
 
-app.listen(3001, () => console.log('Servidor en http://localhost:3001'));
+if (require.main === module) {
+    app.listen(3001, () => console.log('Servidor en http://localhost:3001'));
+}
+
+module.exports = app;
